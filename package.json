@@ -1,0 +1,28 @@
+{
+  "name": "plockity-node",
+  "version": "0.0.0",
+  "description": "Node wrapper for the plockity api",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test -spec R"
+  },
+  "keywords": [
+    "password",
+    "password",
+    "safe",
+    "password",
+    "storage",
+    "encryption"
+  ],
+  "author": "Slinkio",
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt": "^0.7.8",
+    "moment": "^2.7.0",
+    "request": "^2.37.0"
+  },
+  "devDependencies": {
+    "chai": "^1.9.1",
+    "mocha": "^1.20.1"
+  }
+}
