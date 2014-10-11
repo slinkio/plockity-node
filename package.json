@@ -18,6 +18,7 @@
   "license": "MIT",
   "dependencies": {
     "bcrypt": "^0.7.8",
+    "bluebird": "^2.3.5",
     "moment": "^2.7.0",
     "request": "^2.37.0"
   },
