@@ -62,10 +62,11 @@ function Plockity ( options ) {
     }).catch(function ( err ) {
       self.__log.warn( 'Authorization Error:', err, '. Retrying...' );
       setTimeout(self.__connect.bind( self ), 5000);
-    })
+    });
   }
 
   return this;
 }
 
-Plockity.prototype.__connect = connectionLibrary.connect;
+Plockity.prototype.__connect         = connectionLibrary.connect;
+Plockity.prototype.__checkConnection = connectionLibrary.checkConnection;
