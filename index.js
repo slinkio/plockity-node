@@ -54,7 +54,15 @@ function Plockity ( options ) {
   }
 
   if( this.configuration.autoConnect ) {
-    this.__connect();
+    var self = this;
+
+    this.__connect().then(function ( auth ) {
+      self.connected = true;
+      self.__authorization = auth;
+    }).catch(function ( err ) {
+      self.__log.warn( 'Authorization Error:', err, '. Retrying...' );
+      setTimeout(self.__connect.bind( self ), 5000);
+    })
   }
 
   return this;
