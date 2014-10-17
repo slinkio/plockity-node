@@ -8,17 +8,14 @@ var configuration = require('./package.json');
 
 // Libraries
 var logger            = require('./lib/logger'),
-    connectionLibrary = require('./lib/connection');
+    connectionLibrary = require('./lib/connection'),
+    vaultLibrary      = require('./lib/vault');
 
 module.exports = Plockity;
 
 function Plockity ( options ) {
-  if( !options.appId ) {
-    throw new Error('Constructing a new Plockity connection requires an appId specified');
-  }
-
-  if( options.appId.length !== 24 ) {
-    throw new Error('Please pass a valid appId to Plockity constructor');
+  if( !options.appKey ) {
+    throw new Error('Constructing a new Plockity connection requires an appKey specified');
   }
 
   options.server = options.server || {};
@@ -56,10 +53,7 @@ function Plockity ( options ) {
   if( this.configuration.autoConnect ) {
     var self = this;
 
-    this.__connect().then(function ( auth ) {
-      self.connected = true;
-      self.__authorization = auth;
-    }).catch(function ( err ) {
+    self.pendingConnection = this.createConnection().catch(function ( err ) {
       self.__log.warn( 'Authorization Error:', err, '. Retrying...' );
       setTimeout(self.__connect.bind( self ), 5000);
     });
@@ -68,5 +62,10 @@ function Plockity ( options ) {
   return this;
 }
 
+Plockity.prototype.createConnection  = connectionLibrary.createConnection;
 Plockity.prototype.__connect         = connectionLibrary.connect;
 Plockity.prototype.__checkConnection = connectionLibrary.checkConnection;
+Plockity.prototype.__request         = connectionLibrary.request;
+
+Plockity.prototype.vault   = vaultLibrary.vault;
+Plockity.prototype.compare = vaultLibrary.compare;
