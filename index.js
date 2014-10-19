@@ -22,6 +22,7 @@ function Plockity ( options ) {
 
   this.configuration = {
     appKey:        options.appKey,
+    signature:     options.appSignature,
     server: {
       host:        options.server.host || 'plockity.com',
       namespace:   options.namespace   || 'api',
@@ -67,5 +68,4 @@ Plockity.prototype.__connect         = connectionLibrary.connect;
 Plockity.prototype.__checkConnection = connectionLibrary.checkConnection;
 Plockity.prototype.__request         = connectionLibrary.request;
 
-Plockity.prototype.vault   = vaultLibrary.vault;
-Plockity.prototype.compare = vaultLibrary.compare;
+Plockity.prototype.vault = vaultLibrary;

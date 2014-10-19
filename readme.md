@@ -10,7 +10,8 @@
 var PlockityAdapter = require('plockity-node');
 
 var locker = new PlockityAdapter({
-  appKey: 'myAppKeyHere'
+  appKey:       'myAppKeyHere',
+  appSignature: 'myAppSignatureHere'
 });
 ```
 
@@ -25,7 +26,7 @@ var locker = new PlockityAdapter({
 
 var originalSSN = '123456789';
 
-locker.vault('mydatakey', {
+locker.vault.insert('mydatakey', {
   ssn: originalSSN,
   name: {
     first: 'willy',
@@ -39,9 +40,9 @@ locker.vault('mydatakey', {
   console.log( result.name.first ); // "willy"
   console.log( result.ssn );        // undefined
 
-  return locker.vault('mydatakey', { ssn: '123456788' }).then(function ( result ) {
+  return locker.vault.update('mydatakey', { ssn: '123456788' }).then(function ( result ) {
 
-    return locker.compare('mydatakey', { ssn: originalSSN, name: { first: "willy" } }).then(function ( result ) {
+    return locker.vault.compare('mydatakey', { ssn: originalSSN, name: { first: "willy" } }).then(function ( result ) {
       console.log( result.ssn );        // false
       console.log( result.name.first ); // true
     });
