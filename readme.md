@@ -1,5 +1,7 @@
 # Plockity - Node.js Package
 
+Fast, lean, promise-driven wrapper for the Plockity-API. Secure & fast hash data storage!
+
 ## Install
 
 `npm install plockity-node`
@@ -10,8 +12,7 @@
 var PlockityAdapter = require('plockity-node');
 
 var locker = new PlockityAdapter({
-  appKey:       'myAppKeyHere',
-  appSignature: 'myAppSignatureHere'
+  apiKey: 'myAPIKey',
 });
 ```
 
@@ -21,7 +22,7 @@ var locker = new PlockityAdapter({
 var PlockityAdapter = require('plockity-node');
 
 var locker = new PlockityAdapter({
-  appKey: 'myAppKeyHere'
+  apiKey: 'myAPIKey'
 });
 
 var originalSSN = '123456789';
