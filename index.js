@@ -21,14 +21,14 @@ function Plockity ( options ) {
   options.server = options.server || {};
 
   this.configuration = {
-    appKey:        options.appKey,
-    signature:     options.appSignature,
+    appKey:      options.appKey,
+    signature:   options.appSignature,
     server: {
-      host:        options.server.host || 'plockity.com',
-      namespace:   options.namespace   || 'api',
-      port:        options.server.port || 80
+      host:      options.server.host || 'plockity.com',
+      namespace: options.namespace   || 'api',
+      port:      options.server.port || 80
     },
-    autoConnect:   options.autoConnect || true
+    autoConnect: ( options.autoConnect !== undefined ) ? options.autoConnect : true
   };
 
   this.version = configuration.version;
