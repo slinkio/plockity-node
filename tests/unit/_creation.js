@@ -4,7 +4,6 @@ var chai        = require('chai'),
     chaiPromise = require('chai-as-promised'),
     expect      = chai.expect,
     _           = require('lodash'),
-    async       = require('async'),
     chalk       = require('chalk');
 
 chai.use( chaiPromise );

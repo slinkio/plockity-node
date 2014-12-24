@@ -5,7 +5,6 @@ var chai        = require('chai'),
     chaiPromise = require('chai-as-promised'),
     expect      = chai.expect,
     _           = require('lodash'),
-    async       = require('async'),
     chalk       = require('chalk');
 
 chai.use( chaiPromise );
@@ -20,7 +19,8 @@ describe('Plockity :: Lib#Connection', function () {
 
   it('should automatically create a valid authorization & connection by default', function ( done ) {
     var adapter = new PlockityAdapter({
-      apiKey: '123'
+      apiKey: '123',
+      debug: true
     });
 
     expect(adapter.pendingConnection).to.exist.and.to.eventually.be.fulfilled.then(function () {
@@ -41,9 +41,9 @@ describe('Plockity :: Lib#Connection', function () {
       expect(_beachedAdapter.createConnection).to.be.a('function');
     });
 
-    it('should be a promise', function ( done ) {
+    it('should create a connection', function ( done ) {
       var promise = _beachedAdapter.createConnection();
-      expect(promise).to.have.property('then').and.to.eventually.be.fulfilled.and.notify(done);
+      expect(promise).to.eventually.be.fulfilled.and.notify(done);
     });
   });
 });

@@ -14,19 +14,19 @@ var logger            = require('./lib/logger'),
 module.exports = Plockity;
 
 function Plockity ( options ) {
-  if( !options.appKey ) {
-    throw new Error('Constructing a new Plockity connection requires an appKey specified');
+  if( !options.apiKey ) {
+    throw new Error('Constructing a new Plockity adapter requires an apiKey specified');
   }
 
   options.server = options.server || {};
 
   this.configuration = {
-    appKey:      options.appKey,
+    apiKey:      options.apiKey,
     signature:   options.appSignature,
     server: {
-      host:      options.server.host || 'plockity.com',
+      host:      options.server.host || 'localhost',
       namespace: options.namespace   || 'api',
-      port:      options.server.port || 80
+      port:      options.server.port || 3000
     },
     autoConnect: ( options.autoConnect !== undefined ) ? options.autoConnect : true
   };
@@ -42,7 +42,6 @@ function Plockity ( options ) {
   this.__connection = {
     address: 'http://' + srv.host + ':' + srv.port + '/',
     headers: {
-      'App-Key':   this.configuration.appKey,
       'X-Adapter': 'plockity-node'
     }
   };
